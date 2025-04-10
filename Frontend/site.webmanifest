@@ -1,0 +1,24 @@
+{
+  "short_name": "Karawan",
+  "name": "Karawan by GPA",
+  "description": "Book tickets easily for events of GPA",
+  "icons": [
+    {
+      "src": "/img/karawan-logo-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/img/karawan-logo-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/Frontend/index.html",
+  "display": "standalone",
+  "background_color": "#434241",
+  "theme_color": "#181717",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "categories": ["events", "entertainment", "tickets"]
+}

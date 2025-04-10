@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Farm</title>
+  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="icon" href="img/karawan-logo.ico" sizes="any">
+  <link rel="icon" href="img/karawan-logo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="img/karawan-logo.png">
+
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#181717">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html" class="logo"><img src="img/karawan-logo.png" alt="Logo"></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="event">
+      <div class="event_container"  id="event_container">
+        <img src="img/event-logo.jpg" alt="Event Logo">
+        <div class="event-desc">
+          <span>Our latest event at Apoteca. <br> From 23:30 to 6:00 <br> Apérol for 10€ the whole night <br> Don't miss out
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <form id="checkout-form" class="checkout-form" action="/create-checkout-session" method="POST">
+      <fieldset class="ticket-selection">
+        <legend>Number of tickets:</legend>
+          <button class="decrease" type="button">-</button>
+          <span class="ticket-count">1</span>
+          <button class="increase" type="button">+</button>
+        <!-- Hidden input to keep the ticket count in the form submission -->
+        <input type="hidden" id="ticket-quantity" name="ticket-quantity" value="1">
+      </fieldset>
+
+      <fieldset class="subtotal">
+        <p>Subtotal: €<span id="subtotal-price">10.00</span></p>
+      </fieldset>
+
+      <fieldset id="contact-info">
+        <legend>Contact information</legend>
+        <div class="grid">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" required>
+        </div>
+      </fieldset>
+
+      <!--
+      <fieldset>
+        <legend>Card details</legend>
+        <div class="grid">
+          <label for="cardholder">Name on card</label>
+          <input type="text" name="cardholder" id="cardholder" required>
+
+          <label for="cardnumber">Card number</label>
+          <input type="text" name="cardnumber" id="cardnumber" required placeholder="1234 1234 1234 1234">
+
+          <label for="cardexpiry">Expiration date</label>
+          <input name="cardexpiry" id="cardexpiry" type="text" required placeholder="MM/YYYY">
+
+          <label for="cardcvc">CVC</label>
+          <input name="cardcvc" id="cardcvc" type="text" pattern="\d{3}" required placeholder="123">
+        </div>
+      </fieldset>
+      -->
+      <section class="form-button">
+        <button type="submit" class="submit-button">Buy Now</button>
+      </section>
+    </form>
+  </main>
+
+  <footer>
+    <a href="https://www.instagram.com/karawan.ofc/" target="_blank">
+      <img src="img/instagram_icon.png" alt="Instagram Logo">
+    </a>
+    <p>Contact Us: contact@gpa-lux.com</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
