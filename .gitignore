@@ -9,6 +9,8 @@ TicketApp.iml
 .idea
 Frontend/.idea
 .DS_Store
+Frontend/.DS_Store
+Backend/.DS_Store
 
 # Default ignored files
 /shelf/
