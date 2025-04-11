@@ -105,7 +105,7 @@ app.use(express.static(path.join(__dirname, '../Frontend')));
 
 // Serve the homepage
 app.get('/', (req, res) => {
-    res.sendFile('index1.html', { root: path.join(__dirname, '../Frontend') });
+    res.sendFile('index.html', { root: path.join(__dirname, '../Frontend') });
 });
 
 // Create Checkout Session endpoint
@@ -120,7 +120,7 @@ app.post('/create-checkout-session', async (req, res) => {
                 {
                     price_data: {
                         currency: 'EUR',
-                        unit_amount: 0, // amount in cents for 10,00€ = 1000
+                        unit_amount: 1000, // amount in cents for 10,00€ = 1000
                         product_data: {
                             name: 'Karawan - The Farm',
                         },
