@@ -330,7 +330,7 @@ button:hover {
     height: 100vh;
 }
 
-.centered-content h1 {
+.centered-content h1 h2{
     text-align: center;
     width: auto;
 }

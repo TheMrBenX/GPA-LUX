@@ -105,7 +105,7 @@ app.use(express.static(path.join(__dirname, '../Frontend')));
 
 // Serve the homepage
 app.get('/', (req, res) => {
-    res.sendFile('index.html', { root: path.join(__dirname, '../Frontend') });
+    res.sendFile('ticket.html', { root: path.join(__dirname, '../Frontend') });
 });
 
 // Create Checkout Session endpoint
