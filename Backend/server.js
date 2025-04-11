@@ -128,8 +128,8 @@ app.post('/create-checkout-session', async (req, res) => {
                     quantity: quantity,
                 },
             ],
-            success_url: `http://192.168.178.72:${PORT}/cart.html?session_id={CHECKOUT_SESSION_ID}&email=${encodeURIComponent(email)}`,
-            cancel_url: `http://localhost:${PORT}/ticket.html`,
+            success_url: `https://karawan-luxembourg.com/cart.html?session_id={CHECKOUT_SESSION_ID}&email=${encodeURIComponent(email)}`,
+            cancel_url: `https://karawan-luxembourg.com/ticket.html`,
         });
         res.json({ url: session.url });
     } catch (error) {
@@ -207,5 +207,5 @@ app.post('/record-ticket', async (req, res) => {
 
 // Start the server
 app.listen(PORT, () => {
-    console.log(`✅ Server running at http://localhost:${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });
