@@ -16,6 +16,7 @@
     "fs": "^0.0.1-security",
     "mongodb": "^6.15.0",
     "mongoose": "^8.13.2",
+    "nodemailer": "^6.10.0",
     "pdfkit": "^0.16.0",
     "qrcode": "^1.5.4",
     "stripe": "^17.7.0"
