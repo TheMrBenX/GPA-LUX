@@ -128,8 +128,8 @@ app.post('/create-checkout-session', async (req, res) => {
                     quantity: quantity,
                 },
             ],
-            success_url: `https://karawan-luxembourg.com/cart.html?session_id={CHECKOUT_SESSION_ID}&email=${encodeURIComponent(email)}`,
-            cancel_url: `https://karawan-luxembourg.com/ticket.html`,
+            success_url: `https://gpa-luxembourg.onrender.com/cart.html?session_id={CHECKOUT_SESSION_ID}&email=${encodeURIComponent(email)}`,
+            cancel_url: `https://gpa-luxembourg.onrender.com/ticket.html`,
         });
         res.json({ url: session.url });
     } catch (error) {
