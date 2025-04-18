@@ -339,5 +339,32 @@ button:hover {
     margin-top: -10rem;
 }
 
+/*****************************************************************************
+  Scanner
+ *****************************************************************************/
 
+#reader {
+    color: #cccccc;
+    width: 300px;
+    margin: auto;
+}
 
+#qr-result {
+    color: #cccccc;
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    text-align: center;
+}
+
+#scanner {
+    color: #cccccc;
+}
+
+#qr-result button {
+    margin-top: 10px;
+    padding: 6px 12px;
+    font-size: 16px;
+    cursor: pointer;
+}

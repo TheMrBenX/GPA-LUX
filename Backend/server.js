@@ -138,6 +138,38 @@ app.post('/create-checkout-session', async (req, res) => {
     }
 });
 
+// Endpoint to check QR code validity
+app.post('/check-qr', async (req, res) => {
+    const { qrValue } = req.body;
+    if (!qrValue) {
+        return res.status(400).json({ message: 'Missing QR value' });
+    }
+    try {
+        const ticket = await Ticket.findOne({ ticketId: qrValue });
+        if (!ticket) {
+            return res.json({ found: false, message: 'Entry not found' });
+        }
+        if (!ticket.scanned) {
+            ticket.scanned = true;
+            await ticket.save();
+            return res.json({
+                found: true,
+                scanned: true,
+                message: 'Ticket is valid and now marked as scanned'
+            });
+        } else {
+            return res.json({
+                found: true,
+                scanned: true,
+                message: 'Ticket has already been scanned'
+            });
+        }
+    } catch (error) {
+        console.error('Error checking QR code:', error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
 // Endpoint to record ticket orders in the database
 app.post('/record-ticket', async (req, res) => {
     const { email, quantity, stripeSessionId } = req.body;
@@ -206,6 +238,6 @@ app.post('/record-ticket', async (req, res) => {
 });
 
 // Start the server
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server running locally. Access it at http://localhost:${PORT} or http://<your-local-ip>:${PORT}`);
 });

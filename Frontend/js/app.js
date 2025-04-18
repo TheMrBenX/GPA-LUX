@@ -98,3 +98,66 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Missing session_id or email in query parameters.");
     }
 });
+
+// === QR Code Scanner Integration ===
+// Only initialize if the scanner elements are present on the page
+document.addEventListener('DOMContentLoaded', function() {
+    const readerElement = document.getElementById('reader');
+    const qrResultElement = document.getElementById('qr-result');
+    if (readerElement && qrResultElement && typeof Html5Qrcode !== 'undefined') {
+        const html5QrCode = new Html5Qrcode("reader");
+        function onScanSuccess(decodedText, decodedResult) {
+            // Stop scanning after a result to prevent duplicates
+            html5QrCode.stop().catch(err => console.warn('Failed to stop scanner:', err));
+            // Send scanned value to backend for validation
+            fetch('/check-qr', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ qrValue: decodedText })
+            })
+            .then(response => response.json())
+            .then(data => {
+                qrResultElement.innerHTML = `${data.message} <br><button id="scan-again">Scan Another</button>`;
+                // Apply color based on result
+                qrResultElement.style.color = data.found ? 'green' : 'red';
+
+                document.getElementById('scan-again').addEventListener('click', function() {
+                    qrResultElement.innerText = 'Scan a QR code to see the result here';
+                    qrResultElement.style.color = 'black';
+                    html5QrCode.start(
+                        { facingMode: "environment" },
+                        { fps: 10, qrbox: 250 },
+                        onScanSuccess
+                    ).catch(err => {
+                        qrResultElement.innerText = `QR Scanner Error: ${err}`;
+                        qrResultElement.style.color = 'orange';
+                    });
+                });
+            })
+            .catch(error => {
+                qrResultElement.innerHTML = 'Error checking ticket <br><button id="scan-again">Scan Another</button>';
+                qrResultElement.style.color = 'orange';
+
+                document.getElementById('scan-again').addEventListener('click', function() {
+                    qrResultElement.innerText = 'Scan a QR code to see the result here';
+                    qrResultElement.style.color = 'black';
+                    html5QrCode.start(
+                        { facingMode: "environment" },
+                        { fps: 10, qrbox: 250 },
+                        onScanSuccess
+                    ).catch(err => {
+                        qrResultElement.innerText = `QR Scanner Error: ${err}`;
+                        qrResultElement.style.color = 'orange';
+                    });
+                });
+            });
+        }
+        html5QrCode.start(
+            { facingMode: "environment" },
+            { fps: 10, qrbox: 250 },
+            onScanSuccess
+        ).catch(err => {
+            qrResultElement.innerText = `QR Scanner Error: ${err}`;
+        });
+    }
+});
