@@ -154,7 +154,7 @@ app.post('/check-qr', async (req, res) => {
             await ticket.save();
             return res.json({
                 found: true,
-                scanned: true,
+                scanned: false,
                 message: 'Ticket is valid and now marked as scanned'
             });
         } else {
