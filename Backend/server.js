@@ -238,6 +238,6 @@ app.post('/record-ticket', async (req, res) => {
 });
 
 // Start the server
-app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server running locally. Access it at http://localhost:${PORT} or http://<your-local-ip>:${PORT}`);
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });

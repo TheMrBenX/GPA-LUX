@@ -117,9 +117,22 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(response => response.json())
             .then(data => {
-                qrResultElement.innerHTML = `${data.message} <br><button id="scan-again">Scan Another</button>`;
-                // Apply color based on result
-                qrResultElement.style.color = data.found ? 'green' : 'red';
+                let color, message;
+                if (data.found) {
+                    if (!data.scanned) {
+                        color = 'green';
+                        message = 'Ticket Valid';
+                    } else {
+                        color = 'red';
+                        message = 'Ticket Already Scanned';
+                    }
+                } else {
+                    color = 'orange';
+                    message = 'Ticket Not In Database';
+                }
+
+                qrResultElement.innerHTML = `${message} <br><button id="scan-again">Scan Another</button>`;
+                qrResultElement.style.color = color;
 
                 document.getElementById('scan-again').addEventListener('click', function() {
                     qrResultElement.innerText = 'Scan a QR code to see the result here';
